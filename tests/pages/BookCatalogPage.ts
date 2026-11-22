@@ -10,6 +10,8 @@ export class BookCatalogPage {
 
   async openBookDetails(title: string): Promise<BookDetailsPage> {
     await this.bookLink(title).click();
+    // Wait for the URL to change to the book details page
+    await this.page.waitForURL(/\/books\/[^/]+$/);
     return new BookDetailsPage(this.page);
   }
 }
